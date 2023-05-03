@@ -528,7 +528,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "cluster_quantile:apiserver_request_slo_duration_seconds:histogram_quantile{verb=\"read\", cluster=\"$cluster\"}",
+                     "expr": "cluster_quantile:apiserver_request_duration_seconds:histogram_quantile{verb=\"read\", cluster=\"$cluster\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{ resource }}",
@@ -893,7 +893,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "cluster_quantile:apiserver_request_slo_duration_seconds:histogram_quantile{verb=\"write\", cluster=\"$cluster\"}",
+                     "expr": "cluster_quantile:apiserver_request_duration_seconds:histogram_quantile{verb=\"write\", cluster=\"$cluster\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{ resource }}",
@@ -988,7 +988,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum(rate(workqueue_adds_total{job=\"kube-apiserver\", instance=~\"$instance\", cluster=\"$cluster\"}[$__rate_interval])) by (instance, name)",
+                     "expr": "sum(rate(workqueue_adds_total{job=\"kube-apiserver\", instance=~\"$instance\", cluster=\"$cluster\"}[$__interval])) by (instance, name)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} {{name}}",
@@ -1070,7 +1070,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum(rate(workqueue_depth{job=\"kube-apiserver\", instance=~\"$instance\", cluster=\"$cluster\"}[$__rate_interval])) by (instance, name)",
+                     "expr": "sum(rate(workqueue_depth{job=\"kube-apiserver\", instance=~\"$instance\", cluster=\"$cluster\"}[$__interval])) by (instance, name)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} {{name}}",
@@ -1152,7 +1152,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "histogram_quantile(0.99, sum(rate(workqueue_queue_duration_seconds_bucket{job=\"kube-apiserver\", instance=~\"$instance\", cluster=\"$cluster\"}[$__rate_interval])) by (instance, name, le))",
+                     "expr": "histogram_quantile(0.99, sum(rate(workqueue_queue_duration_seconds_bucket{job=\"kube-apiserver\", instance=~\"$instance\", cluster=\"$cluster\"}[$__interval])) by (instance, name, le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} {{name}}",
@@ -1329,7 +1329,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(process_cpu_seconds_total{job=\"kube-apiserver\",instance=~\"$instance\", cluster=\"$cluster\"}[$__rate_interval])",
+                     "expr": "rate(process_cpu_seconds_total{job=\"kube-apiserver\",instance=~\"$instance\", cluster=\"$cluster\"}[$__interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
